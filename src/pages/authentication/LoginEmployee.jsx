@@ -75,7 +75,7 @@ export const LoginEmployee = () => {
                 <div className="flex flex-col gap-2">
                   <div className="flex flex-col items-center">
                     <img
-                      src="/staic/icons/Logo.png"
+                      src="/static/icons/Logo.png"
                       alt="logo"
                       className="w-[70px] justify-center"
                     />
