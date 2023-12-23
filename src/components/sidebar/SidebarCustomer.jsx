@@ -40,12 +40,15 @@ export const SidebarCustomer = () => {
     <>
       <div className="fixed flex flex-col py-4 px-10 bg-white w-60 h-screen items-center shadow-lg justify-between">
         <div>
-          <div className="w-28">
-            <img
-              src="/public/static/images/eRgmsLogo.png"
-              alt="logo"
-              className="h-16"
-            />
+          <div className="w-28 pt-0 py-2">
+            <div className="font-bold flex gap-2">
+              <img
+                src="/public/static/images/eRgmsLogo.png"
+                alt="logo"
+                className="h-14"
+              />
+              <p className="py-4 text-xl">RGMS</p>
+            </div>
           </div>
           <div className="flex flex-col w-full gap-3 pt-5">
             <div className="flex gap-2 px-4 py-2 bg-primaryColor text-white font-bold rounded-lg items-center justify-start ">
@@ -53,13 +56,13 @@ export const SidebarCustomer = () => {
               Dashboard
             </div>
             <Link>
-              <div className="flex gap-2 px-4 py-2 text-primaryColor font-bold rounded-lg items-center justify-start ">
+              <div className="flex gap-2 px-4 py-2 text-primaryColor font-bold rounded-lg items-center justify-start hover:bg-gray-100">
                 <FaServicestack />
                 Rental Spaces
               </div>
             </Link>
             <Link>
-              <div className="flex gap-2 px-4 py-2 text-primaryColor font-bold rounded-lg items-center justify-start ">
+              <div className="flex gap-2 px-4 py-2 text-primaryColor font-bold rounded-lg items-center justify-start hover:bg-gray-100">
                 <FaUser />
                 Profile
               </div>
@@ -69,7 +72,7 @@ export const SidebarCustomer = () => {
         <div className="flex flex-col w-full py-5">
           <div
             onClick={handleLogoutCustomer}
-            className="flex gap-2 px-4 py-2 text-primaryColor font-bold rounded-lg items-center justify-start cursor-pointer "
+            className="flex gap-2 px-4 py-2 text-primaryColor font-bold rounded-lg items-center justify-start cursor-pointer hover:bg-gray-100"
           >
             <IoIosLogOut />
             Sign Out
