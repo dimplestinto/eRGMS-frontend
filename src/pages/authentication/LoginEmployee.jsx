@@ -4,7 +4,7 @@ import { useState } from "react";
 
 export const LoginEmployee = () => {
   
-  const apiURL = "https://9488-64-226-63-220.ngrok-free.app";
+  const apiURL = import.meta.env.VITE_MY_NGROK_API;
   
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -16,13 +16,12 @@ export const LoginEmployee = () => {
 
     if (email !== "" || password !== "") {
       try {
-        let response = await fetch(
-          apiURL + "/eRGMS/public/api/login-employee",
+        let response = await fetch(`${apiURL}/eRGMS/public/api/login-employee`,
           {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              Accept: "application/json",
+              Accept: "application/json","ngrok-skip-browser-warning": "69420",
             },
             body: JSON.stringify({
               email,

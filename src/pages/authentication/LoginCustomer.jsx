@@ -4,25 +4,24 @@ import { useState } from "react";
 
 export const LoginCustomer = () => {
   
-  const apiURL = "https://9488-64-226-63-220.ngrok-free.app";
+  const apiURL = import.meta.env.VITE_MY_NGROK_API;
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const navigator = useNavigate();
+  const nav = useNavigate();
 
   const handleLoginCustomer = async (e) => {
     e.preventDefault();
 
     if (email !== "" || password !== "") {
       try {
-        let response = await fetch(
-          apiURL + "/eRGMS/public/api/login-customer",
+        let response = await fetch(`${apiURL}/eRGMS/public/api/login-customer`,
           {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              Accept: "application/json",
+              Accept: "application/json","ngrok-skip-browser-warning": "69420",
             },
             body: JSON.stringify({
               email,
@@ -49,7 +48,7 @@ export const LoginCustomer = () => {
           );
           localStorage.setItem("token", customerInfo.data?.token);
           setTimeout(() => {
-            navigator("/dashboard-customer");
+            nav("/dashboard-customer");
             return "Login Successfully";
           }, 1200);
         }

@@ -4,7 +4,7 @@ import { useState } from "react";
 
 export const Register = () => {
   
-  const apiURL = "https://9488-64-226-63-220.ngrok-free.app";
+  const apiURL = import.meta.env.VITE_MY_NGROK_API;
 
   const [first_name, setFirst_name] = useState("");
   const [last_name, setLast_name] = useState("");
@@ -13,20 +13,19 @@ export const Register = () => {
   const [password, setPassword] = useState("");
   const [cpassword, setCpassword] = useState("");
 
-  const navigator = useNavigate();
-
+  const nav = useNavigate();
+  
   const handleRegister = async (e) => {
     e.preventDefault();
 
     if (password === cpassword) {
       try {
-        let response = await fetch(
-          apiURL + "/eRGMS/public/api/register-customer",
+        let response = await fetch(`${apiURL}/eRGMS/public/api/register-customer`,
           {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              Accept: "application/json",
+              Accept: "application/json","ngrok-skip-browser-warning": "69420",
             },
             body: JSON.stringify({
               first_name,
@@ -44,7 +43,7 @@ export const Register = () => {
 
         if (response.ok) {
           setTimeout(() => {
-            navigator("/login-customer");
+            nav("/login-customer");
             return "Account Created";
           }, 1200);
         }
