@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { SidebarEmployee } from "../../components/sidebar/SidebarEmployee";
-import { ServiceSlidebar } from "../ServiceSlidebar";
 import { FaPlus } from "react-icons/fa";
 import { ServiceModal } from "../../components/modal/ServiceModal";
 import { useState, useEffect } from "react";

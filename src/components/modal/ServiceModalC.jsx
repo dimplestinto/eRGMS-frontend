@@ -1,4 +1,4 @@
-export const ServiceModal = ({ service = [] }) => {
+export const ServiceModalC = ({ service = [] }) => {
   return (
     <>
       {service.map((service, index) => (
@@ -28,7 +28,7 @@ export const ServiceModal = ({ service = [] }) => {
             // onClick={}
             className="flex gap-2 px-4 py-2 bg-primaryColor text-white font-bold rounded-lg hover:bg-opacity-85 cursor-pointer absolute right-5 bottom-5"
           >
-            View Applications
+            Apply Now
           </button>
         </div>
       ))}
