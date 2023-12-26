@@ -48,7 +48,7 @@ export const DashboardEmployee = () => {
           <div>
             <h1 className="font-bold text-[50px]">Rental Spaces</h1>
           </div>
-          <div>
+          <div className="flex flex-col gap-10">
           <ServiceModal service={responseData}/>
           </div>
         </div>
