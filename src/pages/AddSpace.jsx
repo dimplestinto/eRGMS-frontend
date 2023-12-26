@@ -104,7 +104,7 @@ export const AddSpace = () => {
   return (
     <>
       <SidebarEmployee />
-      <div className="ml-60 p-10">
+      <div className="ml-72 p-10">
         <div>
           <h1 className="font-bold text-[40px]">ADD RENTAL SPACES</h1>
         </div>

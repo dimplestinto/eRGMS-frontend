@@ -7,6 +7,7 @@ import { DashboardCustomer } from "./pages/dashboard/DashboardCustomer";
 import { DashboardEmployee } from "./pages/dashboard/DashboardEmployee";
 import { AddSpace } from "./pages/AddSpace";
 import { PrivateRoute } from "./pages/utils/Privateroute";
+import { AppliedServices } from "./pages/dashboard/AppliedServices";
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
             <Route path="/dashboard-customer" element={<DashboardCustomer />} />
             <Route path="/dashboard-employee" element={<DashboardEmployee />} />
             <Route path="/add-space" element={<AddSpace />} />
+            <Route path="/applied-services" element={<AppliedServices />} />
           </Route>
         </Routes>
       </Routers>

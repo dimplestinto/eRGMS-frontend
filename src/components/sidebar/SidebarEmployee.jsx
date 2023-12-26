@@ -81,12 +81,12 @@ export const SidebarEmployee = () => {
                 Add Space
               </div>
             </Link>
-            <Link>
+            {/* <Link>
               <div className="flex gap-2 px-4 py-2 text-primaryColor font-bold rounded-lg items-center justify-start hover:bg-gray-100">
                 <FaUser />
                 Profile
               </div>
-            </Link>
+            </Link> */}
           </div>
         </div>
         <div className="flex flex-col w-full py-5">

@@ -4,6 +4,8 @@ import { FaUser } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { IoIosLogOut } from "react-icons/io";
 import { Toaster, toast } from "sonner";
+import { PiNotebookBold } from "react-icons/pi";
+
 
 export const SidebarCustomer = () => {
   const apiURL = import.meta.env.VITE_MY_NGROK_API;
@@ -70,15 +72,15 @@ export const SidebarCustomer = () => {
               <SiWindows />
               Dashboard
             </div>
-            <Link>
+            <Link to="/dashboard-customer">
               <div className="flex gap-2 px-4 py-2 text-primaryColor font-bold rounded-lg items-center justify-start hover:bg-gray-100">
                 <FaServicestack />
                 Rental Spaces
               </div>
             </Link>
-            <Link>
+            <Link to="/applied-services">
               <div className="flex gap-2 px-4 py-2 text-primaryColor font-bold rounded-lg items-center justify-start hover:bg-gray-100">
-                <FaUser />
+                <PiNotebookBold  />
                 Applied Services
               </div>
             </Link>
