@@ -6,6 +6,7 @@ import { LoginEmployee } from "./pages/authentication/LoginEmployee";
 import { DashboardCustomer } from "./pages/dashboard/DashboardCustomer";
 import { DashboardEmployee } from "./pages/dashboard/DashboardEmployee";
 import { AddSpace } from "./pages/AddSpace";
+import { PrivateRoute } from "./pages/utils/Privateroute";
 
 export default function App() {
   return (
@@ -16,9 +17,11 @@ export default function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login-customer" element={<LoginCustomer />} />
           <Route path="/login-employee" element={<LoginEmployee />} />
-          <Route path="/dashboard-customer" element={<DashboardCustomer />} />
-          <Route path="/dashboard-employee" element={<DashboardEmployee />} />
-          <Route path="/add-space" element={<AddSpace />} />
+          <Route element={<PrivateRoute />}>
+            <Route path="/dashboard-customer" element={<DashboardCustomer />} />
+            <Route path="/dashboard-employee" element={<DashboardEmployee />} />
+            <Route path="/add-space" element={<AddSpace />} />
+          </Route>
         </Routes>
       </Routers>
     </>

@@ -2,18 +2,6 @@ export const ServiceModal = () => {
   
   const apiURL = import.meta.env.VITE_MY_NGROK_API;
 
-  // const [rentalSpaces, setRentalSpaces] = useState([]);
-
-  // useEffect(() => {
-  //   // Fetch rental spaces from Laravel backend
-  //   fetch.get(`${apiURL}/eRGMS/public/api/get-rental-spaces`)
-  //     .then(response => {
-  //       setRentalSpaces(response.data.data);
-  //     })
-  //     .catch(error => {
-  //       console.error('Error fetching rental spaces:', error);
-  //     });
-  // }, []);
   return (
     <>
       <div className="h-[350px] border rounded-lg shadow-lg flex gap-10 p-10 relative">

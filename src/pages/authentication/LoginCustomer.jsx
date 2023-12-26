@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { IoCloseCircle } from "react-icons/io5";
 import { useState } from "react";
+import { Toaster, toast } from "sonner";
 
 export const LoginCustomer = () => {
   
@@ -9,58 +10,96 @@ export const LoginCustomer = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const [emailError, setEmailError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
+
   const nav = useNavigate();
+  const promise = () => new Promise((resolve) => setTimeout(resolve, 1000));
 
   const handleLoginCustomer = async (e) => {
     e.preventDefault();
 
-    if (email !== "" || password !== "") {
-      try {
-        let response = await fetch(`${apiURL}/eRGMS/public/api/login-customer`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json","ngrok-skip-browser-warning": "69420",
-            },
-            body: JSON.stringify({
-              email,
-              password,
-            }),
-          }
-        );
+  setEmailError(false);
+  setPasswordError(false);
 
-        if (response.ok) {
-          const customerInfo = await response.json();
-          console.log(customerInfo);
-          localStorage.setItem(
-            "customer_id",
-            customerInfo.data?.customer?.customer_id
-          );
-          localStorage.setItem("email", customerInfo.data?.customer?.email);
-          localStorage.setItem(
-            "first_name",
-            customerInfo.data?.customer?.first_name
-          );
-          localStorage.setItem(
-            "last_name",
-            customerInfo.data?.customer?.last_name
-          );
-          localStorage.setItem("token", customerInfo.data?.token);
-          setTimeout(() => {
-            nav("/dashboard-customer");
-            return "Login Successfully";
-          }, 1200);
+  const fields = [
+    {
+      value: password,
+      setError: setPasswordError,
+      message: "Password is required",
+    },
+    { value: email, 
+      setError: setEmailError, 
+      message: "Email is required" 
+    },
+  ];
+
+  let isValid = true;
+
+    fields.forEach((field) => {
+      if (field.value === "") {
+        field.setError(true);
+        toast.error(field.message);
+        isValid = false;
+      }
+    });
+  
+  try {
+    let response = await fetch(`${apiURL}/eRGMS/public/api/login-customer`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json","ngrok-skip-browser-warning": "69420",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      },
+    );
+
+    if (response.ok) {
+      const customerInfo = await response.json();
+      console.log(customerInfo);
+      localStorage.setItem("customer_id", customerInfo.data?.customer?.customer_id);
+      localStorage.setItem("email", customerInfo.data?.customer?.email);
+      localStorage.setItem("first_name",customerInfo.data?.customer?.first_name);
+      localStorage.setItem("last_name",customerInfo.data?.customer?.last_name);
+      localStorage.setItem("token", customerInfo.data?.token);
+
+      toast.promise(promise, {
+        loading: "Logging in...",
+        success: () => {
+        return 'Success Logging In';
+        },
+        error: "Error",
+      });
+      setTimeout(() => {
+        nav("/dashboard-customer");
+        return "Login Successfully";
+      }, 1200);
+    } else {
+      if (response.status === 404){
+        setEmailError(true);
+        toast.error("User does not exist");
+      } else if (response.status === 422){
+        if (!password === "") {
+          setPasswordError(true);
+          toast.error("Incorrect password");
         }
-      } catch (error) {
-        console.log(error);
       }
     }
-  };
+  } catch (error) {
+    toast.warning("Internal Server Error");
+    console.log(error);
+  }
+};
 
   return (
     <>
       <div className="bg-gradient-to-tl from-primaryColor to-secondaryColor">
+      <Toaster position='top-center' closeButton richColors/>
         <div className="py-16 px-80 h-screen">
           <div className="bg-slate-50 h-full rounded-2xl flex justify-between items-center relative">
             <Link to="/">
@@ -94,14 +133,22 @@ export const LoginCustomer = () => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Email"
-                      className="rounded-lg shadow-2xl px-5 py-2 "
+                      className={` ${ 
+                        emailError
+                            ? "rounded-lg shadow-2xl px-5 py-2  w-full border border-red-500"
+                            : "rounded-lg shadow-2xl px-5 py-2  w-full"
+                          }`}
                     />
                     <input
                       type="password"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="Password"
-                      className="rounded-lg shadow-2xl px-5 py-2 "
+                      className={` ${ 
+                        passwordError 
+                            ? "rounded-lg shadow-2xl px-5 py-2  w-full border border-red-500"
+                            : "rounded-lg shadow-2xl px-5 py-2  w-full"
+                          }`}
                     />
                     <div>
                       <p className="text-sm">

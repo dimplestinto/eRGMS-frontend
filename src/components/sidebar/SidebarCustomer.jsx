@@ -5,7 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { IoIosLogOut } from "react-icons/io";
 
 export const SidebarCustomer = () => {
-  const apiURL = "https://9488-64-226-63-220.ngrok-free.app";
+  
+  const apiURL = import.meta.env.VITE_MY_NGROK_API;
 
   const navigator = useNavigate();
 
@@ -18,9 +19,12 @@ export const SidebarCustomer = () => {
 
     try {
       let response = await fetch(apiURL + "/eRGMS/public/api/logout-customer", {
-        method: "DELETE",
+        method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          "ngrok-skip-browser-warning": "69420",
         },
       });
 
