@@ -51,7 +51,7 @@ export const SidebarEmployee = () => {
 
   return (
     <>
-      <div className="fixed flex flex-col py-4 px-10 bg-white w-60 h-screen items-center shadow-lg justify-between">
+      <div className="fixed flex flex-col py-4 px-10 bg-white w-72 h-screen items-center shadow-lg justify-between">
         <div>
           <Toaster position="top-right" closeButton richColors />
           <div className="w-28 pt-0 py-2">

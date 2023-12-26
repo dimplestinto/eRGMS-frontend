@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { SidebarEmployee } from "../components/sidebar/SidebarEmployee";
 import { useNavigate } from "react-router-dom";
-import { Toaster, toast } from "sonner";
+import { toast } from "sonner";
 
 export const AddSpace = () => {
   const apiURL = import.meta.env.VITE_MY_NGROK_API;

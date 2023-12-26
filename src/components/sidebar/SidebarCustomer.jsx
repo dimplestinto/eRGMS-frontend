@@ -52,7 +52,7 @@ export const SidebarCustomer = () => {
 
   return (
     <>
-      <div className="fixed flex flex-col py-4 px-10 bg-white w-60 h-screen items-center shadow-lg justify-between">
+      <div className="fixed flex flex-col py-4 px-10 bg-white w-72 h-screen items-center shadow-lg justify-between">
         <div>
           <Toaster position="top-right" closeButton richColors />
           <div className="w-28 pt-0 py-2">
@@ -79,7 +79,7 @@ export const SidebarCustomer = () => {
             <Link>
               <div className="flex gap-2 px-4 py-2 text-primaryColor font-bold rounded-lg items-center justify-start hover:bg-gray-100">
                 <FaUser />
-                Profile
+                Applied Services
               </div>
             </Link>
           </div>
