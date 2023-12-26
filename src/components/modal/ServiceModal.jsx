@@ -1,34 +1,37 @@
-export const ServiceModal = () => {
-  
-  const apiURL = import.meta.env.VITE_MY_NGROK_API;
-
+export const ServiceModal = ({ service = [] }) => {
   return (
     <>
-      <div className="h-[350px] border rounded-lg shadow-lg flex gap-10 p-10 relative">
-        <img
-          src="/static/images/eRgmsLogo.png"
-          alt="Image"
-          className="h-full border border-primaryColor rounded-lg"
-        />
-        <div className="flex flex-col gap-3">
-          <h1 className="font-bold text-[30px]">Stall Renter</h1>
-          <p className="font-bold">
-            Location: <span className="font-normal">Kinaadman Hall</span>
-          </p>
-          <p className="font-bold">
-            Recommended Business: <span className="font-normal">Food Services, Photocopy Services, School Supplies Services, Computer Encoding/Printing.</span>
-          </p>
-          <p className="font-bold">
-            Monthly Price: <span className="font-normal">1200.00</span>
-          </p>
-        </div>
-        <button
-          // onClick={}
-          className="flex gap-2 px-4 py-2 bg-primaryColor text-white font-bold rounded-lg hover:bg-opacity-85 cursor-pointer absolute right-5 bottom-5"
+      {service.map((service, index) => (
+        <div
+          key={index}
+          className="h-[350px] border rounded-lg shadow-lg flex gap-10 p-10 relative"
         >
-          Edit
-        </button>
-      </div>
+          <img
+            src="/static/images/eRgmsLogo.png"
+            alt="Image"
+            className="h-full border border-primaryColor rounded-lg"
+          />
+          <div className="flex flex-col gap-3">
+            <h1 className="font-bold text-[30px]">{service?.name}</h1>
+            <p className="font-bold">
+              Location: <span className="font-normal">{service?.location}</span>
+            </p>
+            <p className="font-bold">
+              Recommended Business:{" "}
+              <span className="font-normal">{service?.recommended_business}</span>
+            </p>
+            <p className="font-bold">
+              Monthly Price: <span className="font-normal">{service?.monthly_price}</span>
+            </p>
+          </div>
+          <button
+            // onClick={}
+            className="flex gap-2 px-4 py-2 bg-primaryColor text-white font-bold rounded-lg hover:bg-opacity-85 cursor-pointer absolute right-5 bottom-5"
+          >
+            Edit
+          </button>
+        </div>
+      ))}
     </>
   );
 };

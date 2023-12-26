@@ -36,23 +36,9 @@ export const Register = () => {
 
     const fields = [
       {
-        value: first_name,
-        setError: setFnameError,
-        message: "First name is required",
-      },
-      {
-        value: last_name,
-        setError: setLnameError,
-        message: "Last name is required",
-      },
-      {
-        value: address,
-        setError: setAddressError,
-        message: "Address is required",
-      },
-      { value: email, 
-        setError: setEmailError, 
-        message: "Email is required" 
+        value: cpassword,
+        setError: setCpasswordError,
+        message: "Confirm Password is required",
       },
       {
         value: password,
@@ -60,9 +46,24 @@ export const Register = () => {
         message: "Password is required",
       },
       {
-        value: cpassword,
-        setError: setCpasswordError,
-        message: "Confirm Password is required",
+        value: email, 
+        setError: setEmailError, 
+        message: "Email is required",
+      },
+      { 
+        value: address,
+        setError: setAddressError,
+        message: "Address is required",
+      },
+      {
+        value: last_name,
+        setError: setLnameError,
+        message: "Last name is required",
+      },
+      {
+        value: first_name,
+        setError: setFnameError,
+        message: "First name is required",
       },
     ];
 

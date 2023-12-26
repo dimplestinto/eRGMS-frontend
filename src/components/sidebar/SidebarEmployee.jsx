@@ -4,12 +4,13 @@ import { FaUser } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { IoIosLogOut } from "react-icons/io";
 import { FaPlus } from "react-icons/fa";
+import { Toaster, toast } from "sonner";
 
 export const SidebarEmployee = () => {
-  
   const apiURL = import.meta.env.VITE_MY_NGROK_API;
 
-  const navigator = useNavigate();
+  const nav = useNavigate();
+  const promise = () => new Promise((resolve) => setTimeout(resolve, 1000));
 
   const token = localStorage.getItem("token");
 
@@ -17,7 +18,7 @@ export const SidebarEmployee = () => {
     e.preventDefault();
 
     try {
-      let response = await fetch(apiURL + "/eRGMS/public/api/logout-customer", {
+      let response = await fetch(apiURL + "/eRGMS/public/api/logout-employee", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -27,14 +28,23 @@ export const SidebarEmployee = () => {
         },
       });
 
+      toast.promise(promise, {
+        loading: "Signing out...",
+        success: () => {
+          return "Success Signing out";
+        },
+        error: "Error",
+      });
+
       if (response.ok) {
         setTimeout(() => {
-          navigator("/");
+          nav("/");
           localStorage.clear();
           return "Account Logout";
         }, 1200);
       }
     } catch (error) {
+      toast.error("Error logging out. Please try again.");
       console.log(error);
     }
   };
@@ -43,10 +53,11 @@ export const SidebarEmployee = () => {
     <>
       <div className="fixed flex flex-col py-4 px-10 bg-white w-60 h-screen items-center shadow-lg justify-between">
         <div>
+          <Toaster position="top-right" closeButton richColors />
           <div className="w-28 pt-0 py-2">
             <div className="font-bold flex gap-2">
               <img
-                src="/public/static/images/eRgmsLogo.png"
+                src="/static/images/eRgmsLogo.png"
                 alt="logo"
                 className="h-14"
               />
@@ -66,7 +77,7 @@ export const SidebarEmployee = () => {
             </Link>
             <Link to="/add-space">
               <div className="flex gap-2 px-4 py-2 text-primaryColor font-bold rounded-lg items-center justify-start hover:bg-gray-100">
-              <FaPlus />
+                <FaPlus />
                 Add Space
               </div>
             </Link>
